@@ -6,26 +6,48 @@ import Start from './components/Start'
 
 function App() {
 
-  const [startRestart, setStartRestart] = useState("reset")
+  // const [startRestart, setStartRestart] = useState("reset")
+  const [clock, setClock] = useState(10)
+  const [limit, setLimit] = useState(10)
+  const [startRestart, setStartRestart] = useState("start")
 
+  useEffect(() => {   
+      let timer = setTimeout(() => { if(clock>limit){setClock(clock-1)} }, 1000);  
+      return () => {
+          clearTimeout(timer)
+      }
+      }, 
+  [clock])
   function reset(){
-    if(startRestart === "start"){
-         setStartRestart("reset")
-        //  setLimit(0)  
-        //  setClock(clock - 1)    
-    } else {
-        setStartRestart("start")
-        // setClock(10)
-        // setLimit(10)           
-     }
- }
+      if(clock == limit && clock != 0){
+           setStartRestart("reset")
+           setLimit(0)  
+           setClock(clock - 1)    
+      } else {
+          setStartRestart("start")
+          setClock(10)
+          setLimit(10)           
+       }
+   }
+
+//   function reset(){
+//     if(startRestart === "start"){
+//          setStartRestart("reset")
+//         //  setLimit(0)  
+//         //  setClock(clock - 1)    
+//     } else {
+//         setStartRestart("start")
+//         // setClock(10)
+//         // setLimit(10)           
+//      }
+//  }
 
 
 
   return (
     <div >
       <Header />
-      <Countdown />
+      <Countdown time = {clock}/>
       <Canvas />
       <Start title = {startRestart} onClick ={reset}/>
     </div>
