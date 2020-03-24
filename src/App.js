@@ -6,7 +6,6 @@ import Start from './components/Start'
 
 function App() {
 
-  // const [startRestart, setStartRestart] = useState("reset")
   const [clock, setClock] = useState(10)
   const [limit, setLimit] = useState(10)
   const [startRestart, setStartRestart] = useState("start")
@@ -23,32 +22,21 @@ function App() {
            setStartRestart("reset")
            setLimit(0)  
            setClock(clock - 1)    
+           
       } else {
           setStartRestart("start")
           setClock(10)
-          setLimit(10)           
+          setLimit(10)    
+          // clearRect(0, 0, 400, 400);
+
        }
    }
-
-//   function reset(){
-//     if(startRestart === "start"){
-//          setStartRestart("reset")
-//         //  setLimit(0)  
-//         //  setClock(clock - 1)    
-//     } else {
-//         setStartRestart("start")
-//         // setClock(10)
-//         // setLimit(10)           
-//      }
-//  }
-
-
 
   return (
     <div >
       <Header />
       <Countdown time = {clock}/>
-      <Canvas />
+      <Canvas title = {startRestart} />
       <Start title = {startRestart} onClick ={reset}/>
     </div>
   );
