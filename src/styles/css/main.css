@@ -107,6 +107,12 @@ header p {
 }
 
 .canvas {
+  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+  background-color: #17252A;
+  border: 10px solid #3AAFA9;
+  border-radius: 15px;
   text-align: center;
 }
 

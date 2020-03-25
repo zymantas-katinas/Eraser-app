@@ -1,134 +1,96 @@
-// import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-// export default function Canvas(props) {
-//   const [drawing, setDrawing] = useState(false)
-//   const [width, setWidth] = useState(400)
-//   const [height, setHeight] = useState(400)
+export default function Canvas(props) {
+  const [drawing, setDrawing] = useState(false)
+  const [restart, setRestart] = useState(true)
   
-//   const canvasRef = useRef()
-//   const ctx = useRef()
+  const canvasRef = useRef()
+  const ctx = useRef()
   
-//   useEffect(() => {
-//     ctx.current = canvasRef.current.getContext('2d')
-//   }, [])
-  
-//   function handleMouseMove(e) {
-//     // actual coordinates
-//     const coords = [
-//       e.clientX - canvasRef.current.offsetLeft,
-//       e.clientY - canvasRef.current.offsetTop
-//     ]
-//     if (drawing) { 
-//       ctx.current.lineTo(...coords)
-//       ctx.current.stroke()
-//     }
-//     if (props.handleMouseMove) {
-//         props.handleMouseMove(...coords)
-//     }
-//   }
-//   function startDrawing(e) {
-//     ctx.current.lineJoin = 'round'
-//     ctx.current.lineCap = 'round'
-//     ctx.current.lineWidth = 10
-//     ctx.current.strokeStyle = props.color
-//     ctx.current.beginPath();
-//     // actual coordinates
-//     ctx.current.moveTo(
-//       e.clientX - canvasRef.current.offsetLeft,
-//       e.clientY - canvasRef.current.offsetTop
-//     )
-//     setDrawing(true)
-//   }
-//   function stopDrawing() {
-//     ctx.current.closePath()
-//     setDrawing(false)
-//   }
-
-//   return (
-//     <div className ="canvas">
-//       <canvas
-//       ref={canvasRef}
-//       width={width}
-//       height={height}
-//       onMouseDown={startDrawing}
-//       onMouseUp={stopDrawing}
-//       onMouseOut={stopDrawing}
-//       onMouseMove={handleMouseMove}
-//       />
-//     </div>
-//   )
-// }
-
-import React, {useRef, useState, useEffect} from 'react'
-
-// define brush
-const HOOK_SVG =
-  'm129.03125 63.3125c0-34.914062-28.941406-63.3125-64.519531-63.3125-35.574219 0-64.511719 28.398438-64.511719 63.3125 0 29.488281 20.671875 54.246094 48.511719 61.261719v162.898437c0 53.222656 44.222656 96.527344 98.585937 96.527344h10.316406c54.363282 0 98.585938-43.304688 98.585938-96.527344v-95.640625c0-7.070312-4.640625-13.304687-11.414062-15.328125-6.769532-2.015625-14.082032.625-17.960938 6.535156l-42.328125 64.425782c-4.847656 7.390625-2.800781 17.3125 4.582031 22.167968 7.386719 4.832032 17.304688 2.792969 22.160156-4.585937l12.960938-19.71875v42.144531c0 35.582032-29.863281 64.527344-66.585938 64.527344h-10.316406c-36.714844 0-66.585937-28.945312-66.585937-64.527344v-162.898437c27.847656-7.015625 48.519531-31.773438 48.519531-61.261719zm-97.03125 0c0-17.265625 14.585938-31.3125 32.511719-31.3125 17.929687 0 32.511719 14.046875 32.511719 31.3125 0 17.261719-14.582032 31.3125-32.511719 31.3125-17.925781 0-32.511719-14.050781-32.511719-31.3125zm0 0'
-const HOOK_PATH = new Path2D(HOOK_SVG)
-const SCALE = 0.1
-const OFFSET = 80
-function draw(ctx, location) {
-  ctx.fillStyle = 'deepskyblue'
-  ctx.shadowColor = 'dodgerblue'
-  ctx.shadowBlur = 20
-  ctx.save()
-  ctx.scale(SCALE, SCALE)
-  ctx.translate(location.x / SCALE - OFFSET, location.y / SCALE - OFFSET)
-  ctx.fill(HOOK_PATH)
-  ctx.restore()
-}
-
-function App() {
-  const canvasRef = useRef(null)
-  // const [locations, setLocations] = useState([])
-
-  // take last drawing from local storage
-  const [locations, setLocations] = React.useState(
-    JSON.parse(localStorage.getItem('draw-app')) || []
-  )
-
-  // mount canvas, draw initial drawing
   useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    // ctx.clearRect(0, 0, window.innerHeight, window.innerWidth)
-    // locations.forEach(location => draw(ctx, location))
-    ctx.fillRect(0, 0, 400, 400)
-  })
+    ctx.current = canvasRef.current.getContext('2d')
+    // ctx.current.fillStyle = "#17252A"
+    // ctx.current.fillRect(0, 0, 400, 400)
 
-  // put last drawing into local storage
+    // ctx.current.strokeStyle = "#3AAFA9"
+    // ctx.current.lineWidth = 20
+    // ctx.current.strokeRect(0, 0, 400, 400)
+   
+  }, [])
+
+  // Reset if reset/start is clicked in parent.
   useEffect(() => {
-    localStorage.setItem('draw-app', JSON.stringify(locations))
-  })
+    handleClear()
+    if(props.ifStart === "reset"){
+      setDrawing(true)
+    } else {
+      setDrawing(false)
+    }
+  }, [props.ifStart])
 
-  // click canvas to draw
-  function handleCanvasClick(e) {
-    const newLocation = { x: e.clientX, y: e.clientY }
-    setLocations([...locations, newLocation])
+  // Stop when time is 0
+  useEffect(() => {
+    if(props.ifFinished){
+      setDrawing(false)
+    } else {
+      setDrawing(true)
+    }
+  }, [props.ifFinished])
+
+   //clear function
+   function handleClear() {
+     ctx.current.clearRect(0, 0, 400, 400)
   }
 
-  function handleClear() {
-    setLocations([])
+  // draw when moving mouse if draw = true
+  function handleMouseMove(e) {
+    const coords = [
+      e.clientX - canvasRef.current.offsetLeft,
+      e.pageY - canvasRef.current.offsetTop
+    ]
+    if (drawing) { 
+      ctx.current.lineTo(...coords)
+      ctx.current.stroke()
+    }
   }
-  function handleUndo(){
-    setLocations(locations.slice(0, -1))
+
+  function startDrawing(e) {
+    ctx.current.lineJoin = 'round'
+    ctx.current.lineCap = 'round'
+    ctx.current.lineWidth = 20
+    ctx.current.strokeStyle = "#3AAFA9"
+    ctx.current.beginPath();
+    // actual coordinates
+    ctx.current.moveTo(
+      e.clientX - canvasRef.current.offsetLeft,
+      e.pageY - canvasRef.current.offsetTop
+    )
+  }
+
+  function stopDrawing() {
+    ctx.current.closePath()
+    // setDrawing(false)
+  }
+  function handleClick(){
+    // setDrawing(true)
+    // console.log(props.title)
   }
 
   return (
     <div>
-      <button onClick={handleClear}>Clear</button>
-      <button onClick={handleUndo}>Undo</button>
-      <div className = "canvas">
+      <div className ="canvas">
         <canvas
-          ref={canvasRef}
-          width={400}
-          height={400}
-          // onClick={handleCanvasClick}
-          onClick={handleCanvasClick}
+        ref={canvasRef}
+        width={400}
+        height={400}
+        // onMouseDown={startDrawing}
+        onMouseOver={startDrawing}
+        // onMouseUp={stopDrawing}
+        onMouseOut={stopDrawing}
+        onMouseMove={handleMouseMove}
+        onClick={handleClick}
         />
       </div>
     </div>
   )
 }
-
-export default App

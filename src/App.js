@@ -9,13 +9,19 @@ function App() {
   const [clock, setClock] = useState(10)
   const [limit, setLimit] = useState(10)
   const [startRestart, setStartRestart] = useState("start")
+  const [finished, setFinished] = useState(false)
 
   useEffect(() => {   
-      let timer = setTimeout(() => { if(clock>limit){setClock(clock-1)} }, 1000);  
-      return () => {
-          clearTimeout(timer)
-      }
-      }, 
+    if(clock === 0){
+      setFinished(true)
+    } else if ( clock === limit){
+      setFinished(false)
+    }
+    let timer = setTimeout(() => { if(clock>limit){setClock(clock-1)} }, 1000);  
+    return () => {
+        clearTimeout(timer)
+    }
+    }, 
   [clock])
   function reset(){
       if(clock == limit && clock != 0){
@@ -36,8 +42,8 @@ function App() {
     <div >
       <Header />
       <Countdown time = {clock}/>
-      <Canvas title = {startRestart} />
-      <Start title = {startRestart} onClick ={reset}/>
+      <Canvas ifStart = {startRestart} ifFinished = {finished} />
+      <Start ifStart = {startRestart} onClick ={reset}/>
     </div>
   );
 }
