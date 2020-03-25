@@ -123,6 +123,26 @@ header p {
           align-items: center;
 }
 
+.canvasImgArray {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  text-align: center;
+}
+
+.canvasImgArray img {
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  background-color: #17252A;
+  border-radius: 5px;
+}
+
 .countdown {
   color: #17252A;
   text-align: center;

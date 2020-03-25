@@ -24,6 +24,20 @@ header {
     justify-content: center;
     align-items: center;
 }
+.canvasImgArray {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    text-align: center;
+    & img{
+        margin: 10px;
+        width: 80px;
+        height: 80px;
+        background-color: $col5;
+        border-radius: 5px;
+    }
+
+}
 
 .countdown {
     color: $col5;
