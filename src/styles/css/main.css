@@ -111,9 +111,16 @@ header p {
   width: 400px;
   height: 400px;
   background-color: #17252A;
-  border: 10px solid #3AAFA9;
-  border-radius: 15px;
-  text-align: center;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .countdown {
@@ -126,12 +133,15 @@ header p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 20px auto;
+}
+
+.countdown h1 {
+  margin: 15px auto;
 }
 
 .countdown button {
   width: 400px;
-  margin: 0 auto;
+  margin: 20px auto;
   font-size: 1.5rem;
   color: #DEF2F1;
   background-color: #2B7A78;

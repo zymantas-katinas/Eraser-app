@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {   
     if(clock === 0){
       setFinished(true)
-    } else if ( clock === limit){
+    } else {
       setFinished(false)
     }
     let timer = setTimeout(() => { if(clock>limit){setClock(clock-1)} }, 1000);  
@@ -23,6 +23,7 @@ function App() {
     }
     }, 
   [clock])
+
   function reset(){
       if(clock == limit && clock != 0){
            setStartRestart("reset")
