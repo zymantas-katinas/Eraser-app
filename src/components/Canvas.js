@@ -104,3 +104,6 @@ export default function Canvas(props) {
     </div>
   )
 }
+
+
+//test eraser
