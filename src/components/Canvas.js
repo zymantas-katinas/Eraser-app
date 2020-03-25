@@ -106,3 +106,7 @@ export default function Canvas(props) {
 }
 
 // test eraserx
+
+function test-eraser(){
+  return true
+}
