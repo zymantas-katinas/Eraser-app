@@ -9,7 +9,7 @@ export default function Canvas(props) {
   
   const canvasRef = useRef()
   const ctx = useRef()
-  
+
   useEffect(() => {
     ctx.current = canvasRef.current.getContext('2d')   
   }, [])
@@ -66,14 +66,18 @@ export default function Canvas(props) {
     ctx.current.lineJoin = 'round'
     ctx.current.lineCap = 'round'
     ctx.current.lineWidth = 20
-    ctx.current.strokeStyle = "#3AAFA9"
+        // define background color
+        const appDiv = document.querySelector(".app")
+        const appStyle = getComputedStyle(appDiv)
+        const color = appStyle.backgroundColor    
+    ctx.current.strokeStyle = color
     ctx.current.beginPath();
     // actual coordinates
     ctx.current.moveTo(
       e.clientX - canvasRef.current.offsetLeft,
       e.pageY - canvasRef.current.offsetTop
     )
-    
+    // console.log(props.bgColor)
   }
 
   function stopDrawing() {
@@ -91,9 +95,17 @@ export default function Canvas(props) {
 
   return (
     <div className ="canvas">
-      {props.ifFinished ? <input type="text" name="title" placeholder ="TITLE" autocomplete="off"  onChange={inputTitle} /> : null}
+      {props.ifFinished ? 
+        <input 
+          type="text" 
+          name="title" 
+          placeholder ="TITLE" 
+          autoComplete="off"  
+          onChange={inputTitle} 
+        /> 
+      : null}
+
       <div className ="canvas__rect">
-       
         <canvas
         ref={canvasRef}
         width={415}

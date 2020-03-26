@@ -15,7 +15,9 @@ function App() {
   const [post, setPost] = useState(true)
   const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
 
-  const app = useRef()
+  //
+
+
 
   // start stop timer
   useEffect(() => {   
@@ -30,7 +32,7 @@ function App() {
     }
     }, 
   [clock, limit])
-  
+
   // define pointer position on mouseMove
   function handleMouseMove(e){
     const x = e.clientX 
@@ -52,6 +54,7 @@ function App() {
         setClock(10)
         setLimit(10)    
       }
+      console.log(global.test)
    }
    // update post state when clicked to initiate useEffect in canvas to push img
   function postClick(){
@@ -69,10 +72,11 @@ function App() {
   let pointerStyle = {
     top: pointerPos.y - 10 + "px", 
     left: pointerPos.x - 10 + "px", 
+    color: pointerPos.color
   }
 
   return (
-    <div ref = {app} onMouseMove ={handleMouseMove} className = "app" >
+    <div  onMouseMove ={handleMouseMove} className = "app" >
       <div className ="pointer" style ={pointerStyle}></div>
       <Header />
       <Countdown
@@ -84,6 +88,7 @@ function App() {
         ifFinished = {finished} 
         getArr = {getArr} 
         onPostClick ={post} 
+        bgColor = {pointerPos.color}
       />
       <Start  
         ifStart = {startRestart} 
