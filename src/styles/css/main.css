@@ -29,6 +29,7 @@ dl,
 dd,
 canvas {
   margin: 0;
+  cursor: default;
 }
 
 /* Set core body defaults */
@@ -85,6 +86,7 @@ select {
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #3AAFA9;
+  margin-bottom: 100px;
 }
 
 header {
@@ -107,20 +109,71 @@ header p {
 }
 
 .canvas {
+  text-align: center;
+}
+
+.canvas__rect {
   margin: 0 auto;
-  width: 400px;
-  height: 400px;
   background-color: #17252A;
   border-radius: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  width: 400px;
+  height: 400px;
+}
+
+.canvas input {
+  width: 400px;
+  margin: 20px auto 40px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  background-color: #3AAFA9;
+  color: #17252A;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 3px 2px 19px -5px rgba(0, 0, 0, 0.62);
+          box-shadow: inset 3px 2px 19px -5px rgba(0, 0, 0, 0.62);
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
+}
+
+.canvas input ::-webkit-input-placeholder {
+  color: #2B7A78;
+}
+
+.canvas input :-ms-input-placeholder {
+  color: #2B7A78;
+}
+
+.canvas input ::-ms-input-placeholder {
+  color: #2B7A78;
+}
+
+.canvas input ::placeholder {
+  color: #2B7A78;
+}
+
+.canvas input:focus {
+  outline: none;
+}
+
+.canvas input:hover {
+  background-color: #2B7A78;
+}
+
+.canvas input:hover::-webkit-input-placeholder {
+  color: #3AAFA9;
+}
+
+.canvas input:hover:-ms-input-placeholder {
+  color: #3AAFA9;
+}
+
+.canvas input:hover::-ms-input-placeholder {
+  color: #3AAFA9;
+}
+
+.canvas input:hover::placeholder {
+  color: #3AAFA9;
 }
 
 .canvasImgArray {
@@ -160,10 +213,12 @@ header p {
 }
 
 .countdown button {
+  -webkit-box-shadow: 3px 2px 19px -5px rgba(0, 0, 0, 0.62);
+          box-shadow: 3px 2px 19px -5px rgba(0, 0, 0, 0.62);
   width: 400px;
-  margin: 20px auto;
+  margin: 40px auto 0;
   font-size: 1.5rem;
-  color: #DEF2F1;
+  color: #3AAFA9;
   background-color: #2B7A78;
   text-transform: uppercase;
   font-weight: 700;
@@ -174,13 +229,18 @@ header p {
 }
 
 .countdown button:focus {
-  outline: #2B7A78 auto 5px;
+  outline: none;
   border: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
 .countdown button:hover {
   background-color: #17252A;
+  cursor: pointer;
+}
+
+.countdown button:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #DEF2F1;
 }
 /*# sourceMappingURL=main.css.map */

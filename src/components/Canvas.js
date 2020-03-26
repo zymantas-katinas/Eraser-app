@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 
 export default function Canvas(props) {
   const [drawing, setDrawing] = useState(false)
-  const [restart, setRestart] = useState(true)
+  // const [restart, setRestart] = useState(true)
   const [imgArr, setImgArr] = useState([])
   const [title, setTitle] = useState("")
   
   const canvasRef = useRef()
   const ctx = useRef()
-  const converted = useRef()
   
   useEffect(() => {
     ctx.current = canvasRef.current.getContext('2d')   
@@ -30,6 +29,19 @@ export default function Canvas(props) {
       setDrawing(false)
     } 
   }, [props.ifFinished])
+
+  // push imgArr to App
+  useEffect(() => {
+    props.getArr(imgArr)
+  }, [imgArr])
+
+    // push img Src and Title to imgArr state when POST is clicked
+    useEffect(()=>{
+      const dataURI = canvasRef.current.toDataURL();
+      setImgArr(item =>  { return[...item, { src: dataURI, title: title, id: imgArr.length }] }  )
+      console.log('post clicked ')
+    },[props.onPostClick] )
+    
 
    //clear function
   function handleClear() {
@@ -66,30 +78,16 @@ export default function Canvas(props) {
     // setDrawing(false)
   }
 
-  // push img Src and Title to imgArr state onClick
-  function pushToImgArr(){
-    const dataURI = canvasRef.current.toDataURL();
-    setImgArr(item =>  { return[...item, { src: dataURI, title: title, id: imgArr.length }] }  )
-    console.log(imgArr)
-  }
-  // map all imgArr objects ant print in div
-  const allImg = imgArr.map(item =>  <div key ={item.id}><img src={item.src} /><p>{item.title}</p></div> );
-
   // set current title state when typing to input
   function inputTitle(event){
       setTitle(event.target.value)
    }
 
+
   return (
-    <div>
-       <div className ="canvasImgArray">
-         {allImg}       
-        </div>
-        
-          <button onClick ={pushToImgArr}> download </button>
-          <input type="text" name="title" placeholder ="title" onChange={inputTitle} />
-      
-      <div className ="canvas">
+    <div className ="canvas">
+      {props.ifFinished ? <input type="text" name="title" placeholder ="TITLE" onChange={inputTitle} /> : null}
+      <div className ="canvas__rect">
         <canvas
         ref={canvasRef}
         width={415}
