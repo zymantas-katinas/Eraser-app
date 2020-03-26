@@ -15,6 +15,7 @@ function App() {
   const [post, setPost] = useState(true)
   const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
 
+  const app = useRef()
 
   // start stop timer
   useEffect(() => {   
@@ -28,8 +29,9 @@ function App() {
         clearTimeout(timer)
     }
     }, 
-  [clock])
-
+  [clock, limit])
+  
+  // define pointer position on mouseMove
   function handleMouseMove(e){
     const x = e.clientX 
     const y = e.pageY
@@ -38,24 +40,21 @@ function App() {
     })
   }
 
+  // change time and start/restart button onClick
   function reset(){
-      if(clock === limit && clock !== 0){
-           setStartRestart("reset")
-           setLimit(0)  
-           setClock(clock - 1)    
-           
-      } else {
-          setStartRestart("start")
-          setClock(10)
-          setLimit(10)    
-          // clearRect(0, 0, 400, 400);
-
-       }
-      //  console.log(btn)
+    if(clock === limit && clock !== 0){
+        setStartRestart("reset")
+        setLimit(0)  
+        setClock(clock - 1)    
+        
+    } else {
+        setStartRestart("start")
+        setClock(10)
+        setLimit(10)    
+      }
    }
    // update post state when clicked to initiate useEffect in canvas to push img
   function postClick(){
-    // console.log('post')
     setPost((post) => !post)
   }
 
@@ -64,23 +63,35 @@ function App() {
     setImgArr(prop)
   }
   // put every img from imgArr to <div><img></div>
-  const allImg = imgArr.map(item => <div key ={item.id}><img src={item.src} /><p>{item.title}</p></div>);
-  let pointerStyle = {top: pointerPos.y - 10, left: pointerPos.x - 10 }
+  const allImg = imgArr.map(item => <div key ={item.id}><img src={item.src} alt="artpiece" /><p>{item.title}</p></div>);
 
-  // const buttons = document.querySelectorAll(".countdown button")
-  // buttons.onMouseOver = function(){ console.log('btn') }
-  function handleBtnMouseOver(){
-    console.log('over')
+  // define style for Pointer
+  let pointerStyle = {
+    top: pointerPos.y - 10 + "px", 
+    left: pointerPos.x - 10 + "px", 
   }
 
   return (
-    <div onMouseMove ={handleMouseMove} >
+    <div ref = {app} onMouseMove ={handleMouseMove} className = "app" >
       <div className ="pointer" style ={pointerStyle}></div>
       <Header />
-      <Countdown time = {clock} clickPost = {postClick}/>
-      <Canvas ifStart = {startRestart} ifFinished = {finished} getArr = {getArr} onPostClick ={post} />
-      <Start  ifStart = {startRestart} onClick ={reset} onMouseOver = {handleBtnMouseOver}/>
-      <Gallery allImg = {allImg}/>
+      <Countdown
+         time = {clock} 
+         clickPost = {postClick}
+      />
+      <Canvas 
+        ifStart = {startRestart} 
+        ifFinished = {finished} 
+        getArr = {getArr} 
+        onPostClick ={post} 
+      />
+      <Start  
+        ifStart = {startRestart} 
+        onClick ={reset} 
+      />
+      <Gallery 
+        allImg = {allImg}
+      />
     </div>
   );
 }

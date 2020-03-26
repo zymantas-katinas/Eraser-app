@@ -1,3 +1,8 @@
+.app {
+    background-color: $col3;
+    padding-bottom: 100px;
+}
+
 header {
     padding: 3rem;
     text-align: center;
@@ -70,17 +75,7 @@ header {
     }
 
 }
-.pointer {
-    width: 21px;
-    height: 21px;
-    background-color: $col3;
-    border: 1px solid $col5;
-    opacity: 30%;
-    border-radius: 50%;
-    position: absolute;
-    pointer-events: none;
-    // cursor: none;
-}
+
 
 .countdown {
     color: $col5;
@@ -101,7 +96,7 @@ header {
         font-weight: 700;
         border: 0;
         border-radius: 5px;
-        transition: 0.1s ease-in-out;
+        transition: 0.2s ease-in-out;
         &:focus {
             outline: none;
             border: 0;
@@ -116,4 +111,17 @@ header {
             color: $col2;
         }
     }
+}
+
+.pointer {
+    width: 21px;
+    height: 21px;
+    background-color: $col3;
+    border: 1px solid $col5;
+    opacity: 30%;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    // cursor: none;
+    // transition: 0.2s ease-in-out;
 }
