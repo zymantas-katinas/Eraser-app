@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Header from './components/Header'
 import Gallery from './components/Gallery'
 import Countdown from './components/Countdown'
@@ -14,7 +14,8 @@ function App() {
   const [imgArr, setImgArr] = useState([])
   const [post, setPost] = useState(true)
   const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
- 
+
+
   // start stop timer
   useEffect(() => {   
     if(clock === 0){
@@ -50,6 +51,7 @@ function App() {
           // clearRect(0, 0, 400, 400);
 
        }
+      //  console.log(btn)
    }
    // update post state when clicked to initiate useEffect in canvas to push img
   function postClick(){
@@ -63,15 +65,22 @@ function App() {
   }
   // put every img from imgArr to <div><img></div>
   const allImg = imgArr.map(item => <div key ={item.id}><img src={item.src} /><p>{item.title}</p></div>);
+  let pointerStyle = {top: pointerPos.y - 10, left: pointerPos.x - 10 }
+
+  // const buttons = document.querySelectorAll(".countdown button")
+  // buttons.onMouseOver = function(){ console.log('btn') }
+  function handleBtnMouseOver(){
+    console.log('over')
+  }
 
   return (
-    <div onMouseMove ={handleMouseMove}>
-      <div className ="pointer" style ={{top: pointerPos.y - 10, left: pointerPos.x - 10 }}></div>
+    <div onMouseMove ={handleMouseMove} >
+      <div className ="pointer" style ={pointerStyle}></div>
       <Header />
-      <Gallery allImg = {allImg}/>
       <Countdown time = {clock} clickPost = {postClick}/>
       <Canvas ifStart = {startRestart} ifFinished = {finished} getArr = {getArr} onPostClick ={post} />
-      <Start ifStart = {startRestart} onClick ={reset}/>
+      <Start  ifStart = {startRestart} onClick ={reset} onMouseOver = {handleBtnMouseOver}/>
+      <Gallery allImg = {allImg}/>
     </div>
   );
 }

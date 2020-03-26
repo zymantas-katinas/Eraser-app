@@ -88,7 +88,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: #3AAFA9;
   margin-bottom: 100px;
-  cursor: none;
 }
 
 header {
@@ -208,6 +207,17 @@ header p {
   border-radius: 5px;
 }
 
+.pointer {
+  width: 21px;
+  height: 21px;
+  background-color: #3AAFA9;
+  border: 1px solid #17252A;
+  opacity: 30%;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
+
 .countdown {
   color: #17252A;
   text-align: center;
@@ -253,16 +263,5 @@ header p {
   -webkit-box-shadow: none;
           box-shadow: none;
   color: #DEF2F1;
-}
-
-.pointer {
-  width: 21px;
-  height: 21px;
-  background-color: #3AAFA9;
-  border: 1px solid #17252A;
-  opacity: 30%;
-  border-radius: 50%;
-  position: absolute;
-  pointer-events: none;
 }
 /*# sourceMappingURL=main.css.map */

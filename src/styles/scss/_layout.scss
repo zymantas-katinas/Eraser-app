@@ -52,6 +52,7 @@ header {
                 color: $col3; 
             }
             cursor: none;
+          
         }
     }
 }
@@ -68,6 +69,17 @@ header {
         border-radius: 5px;
     }
 
+}
+.pointer {
+    width: 21px;
+    height: 21px;
+    background-color: $col3;
+    border: 1px solid $col5;
+    opacity: 30%;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    // cursor: none;
 }
 
 .countdown {
@@ -104,15 +116,4 @@ header {
             color: $col2;
         }
     }
-}
-.pointer {
-    width: 21px;
-    height: 21px;
-    background-color: $col3;
-    border: 1px solid $col5;
-    opacity: 30%;
-    border-radius: 50%;
-    position: absolute;
-    pointer-events: none;
-    // cursor: none;
 }
