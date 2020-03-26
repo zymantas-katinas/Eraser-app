@@ -17,11 +17,15 @@ header {
 .canvas {
     text-align: center;
     &__rect {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0 auto;
         background-color: $col5;
         border-radius: 5px;
         width: 400px;
         height: 400px;
+        
     }
     & input {
         width: 400px;
@@ -47,6 +51,7 @@ header {
             &::placeholder {
                 color: $col3; 
             }
+            cursor: none;
         }
     }
 }
@@ -92,11 +97,22 @@ header {
         }
         &:hover {
             background-color: $col5;
-            cursor: pointer;
+            // cursor: pointer;
         }
         &:active {
             box-shadow: none;
             color: $col2;
         }
     }
+}
+.pointer {
+    width: 21px;
+    height: 21px;
+    background-color: $col3;
+    border: 1px solid $col5;
+    opacity: 30%;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    // cursor: none;
 }

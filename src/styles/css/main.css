@@ -27,9 +27,10 @@ figcaption,
 blockquote,
 dl,
 dd,
-canvas {
+canvas,
+button {
   margin: 0;
-  cursor: default;
+  cursor: none;
 }
 
 /* Set core body defaults */
@@ -87,6 +88,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: #3AAFA9;
   margin-bottom: 100px;
+  cursor: none;
 }
 
 header {
@@ -113,6 +115,15 @@ header p {
 }
 
 .canvas__rect {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0 auto;
   background-color: #17252A;
   border-radius: 5px;
@@ -158,6 +169,7 @@ header p {
 
 .canvas input:hover {
   background-color: #2B7A78;
+  cursor: none;
 }
 
 .canvas input:hover::-webkit-input-placeholder {
@@ -235,12 +247,22 @@ header p {
 
 .countdown button:hover {
   background-color: #17252A;
-  cursor: pointer;
 }
 
 .countdown button:active {
   -webkit-box-shadow: none;
           box-shadow: none;
   color: #DEF2F1;
+}
+
+.pointer {
+  width: 21px;
+  height: 21px;
+  background-color: #3AAFA9;
+  border: 1px solid #17252A;
+  opacity: 30%;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
 }
 /*# sourceMappingURL=main.css.map */

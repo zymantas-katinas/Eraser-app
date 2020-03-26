@@ -5,6 +5,7 @@ export default function Canvas(props) {
   // const [restart, setRestart] = useState(true)
   const [imgArr, setImgArr] = useState([])
   const [title, setTitle] = useState("")
+
   
   const canvasRef = useRef()
   const ctx = useRef()
@@ -35,12 +36,12 @@ export default function Canvas(props) {
     props.getArr(imgArr)
   }, [imgArr])
 
-    // push img Src and Title to imgArr state when POST is clicked
-    useEffect(()=>{
-      const dataURI = canvasRef.current.toDataURL();
-      setImgArr(item =>  { return[...item, { src: dataURI, title: title, id: imgArr.length }] }  )
-      console.log('post clicked ')
-    },[props.onPostClick] )
+  // push img Src and Title to imgArr state when POST is clicked
+  useEffect(()=>{
+    const dataURI = canvasRef.current.toDataURL();
+    setImgArr(item =>  { return[...item, { src: dataURI, title: title, id: imgArr.length }] }  )
+    console.log('post clicked ')
+  },[props.onPostClick] )
     
 
    //clear function
@@ -59,6 +60,7 @@ export default function Canvas(props) {
       ctx.current.stroke()
     }
   }
+
  // begin path / start drawing
   function startDrawing(e) {
     ctx.current.lineJoin = 'round'
@@ -71,6 +73,7 @@ export default function Canvas(props) {
       e.clientX - canvasRef.current.offsetLeft,
       e.pageY - canvasRef.current.offsetTop
     )
+    
   }
 
   function stopDrawing() {
@@ -80,14 +83,17 @@ export default function Canvas(props) {
 
   // set current title state when typing to input
   function inputTitle(event){
+    event.preventDefault()
       setTitle(event.target.value)
    }
 
 
+
   return (
     <div className ="canvas">
-      {props.ifFinished ? <input type="text" name="title" placeholder ="TITLE" onChange={inputTitle} /> : null}
+      {props.ifFinished ? <input type="text" name="title" placeholder ="TITLE" autocomplete="off"  onChange={inputTitle} /> : null}
       <div className ="canvas__rect">
+       
         <canvas
         ref={canvasRef}
         width={415}

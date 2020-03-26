@@ -13,6 +13,7 @@ function App() {
   const [finished, setFinished] = useState(false)
   const [imgArr, setImgArr] = useState([])
   const [post, setPost] = useState(true)
+  const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
  
   // start stop timer
   useEffect(() => {   
@@ -27,6 +28,14 @@ function App() {
     }
     }, 
   [clock])
+
+  function handleMouseMove(e){
+    const x = e.clientX 
+    const y = e.pageY
+    setPointerPos({
+      x, y
+    })
+  }
 
   function reset(){
       if(clock === limit && clock !== 0){
@@ -56,7 +65,8 @@ function App() {
   const allImg = imgArr.map(item => <div key ={item.id}><img src={item.src} /><p>{item.title}</p></div>);
 
   return (
-    <div >
+    <div onMouseMove ={handleMouseMove}>
+      <div className ="pointer" style ={{top: pointerPos.y - 10, left: pointerPos.x - 10 }}></div>
       <Header />
       <Gallery allImg = {allImg}/>
       <Countdown time = {clock} clickPost = {postClick}/>

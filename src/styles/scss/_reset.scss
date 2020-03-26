@@ -26,9 +26,10 @@ figcaption,
 blockquote,
 dl,
 dd,
-canvas {
+canvas,
+button {
   margin: 0;
-  cursor: default;
+  cursor: none;
 }
 
 /* Set core body defaults */
