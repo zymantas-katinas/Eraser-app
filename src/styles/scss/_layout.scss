@@ -8,13 +8,23 @@ nav {
     background-color: $col4;
     padding: 10px 20%;
     & .navList {
-        color: $col2;
-        font-size: 1.3rem;
-        font-weight: 700;
+  
         display: flex;
         justify-content: space-around;
+        & .link {
+            color: $col2;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.1s ease-in-out; 
+            &:hover {           
+                font-size: 1.5rem;
+                // size: 120%;
+            }
+        }
     }
 }
+
 
 header {
     padding: 3rem;

@@ -30,7 +30,6 @@ dd,
 canvas,
 button {
   margin: 0;
-  cursor: none;
 }
 
 /* Set core body defaults */
@@ -99,14 +98,24 @@ nav {
 }
 
 nav .navList {
-  color: #DEF2F1;
-  font-size: 1.3rem;
-  font-weight: 700;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+nav .navList .link {
+  color: #DEF2F1;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
+}
+
+nav .navList .link:hover {
+  font-size: 1.5rem;
 }
 
 header {
