@@ -1,19 +1,90 @@
 import React, { useState, useEffect, useRef } from 'react'
+// import axios from 'axios';
 
 export default function Canvas(props) {
   const [drawing, setDrawing] = useState(false)
-  // const [restart, setRestart] = useState(true)
-  const [imgArr, setImgArr] = useState([])
+
   const [title, setTitle] = useState("")
+  const [src, setSrc] = useState()
 
   
-  const canvasRef = useRef()
-  const ctx = useRef()
+  //----- POST data to DB
+  // set current title state when typing to input
+  function inputTitle(event){
+    event.preventDefault()
+      setTitle(event.target.value)
+      // console.log(title)
+    }
+    const artpiece = {
+      username: "zymka je",
+      title: title,
+      uri: src,
+      duration: 10,
+      date: "2020-03-29T16:01:46.303Z"
+    }
+    
+    function clickPost(){
+      // axios.post('http://localhost:3000/artpieces/add', artpiece)
+      // .then(res => console.log(res.data));
+      console.log(artpiece)
+    }
 
-  useEffect(() => {
-    ctx.current = canvasRef.current.getContext('2d')   
-  }, [])
+  // push img Src and Title to imgArr state when POST is clicked
+  useEffect(()=>{
+    const dataURI = canvasRef.current.toDataURL();
+    setSrc(dataURI)
+  },[props.ifFinished] )
+    
+  //----- POST data to DB end ----- // 
 
+
+ // ------- DRAW 
+ const canvasRef = useRef()
+ const ctx = useRef()
+ useEffect(() => {
+   ctx.current = canvasRef.current.getContext('2d')   
+ }, [])
+
+  // draw when moving mouse if draw = true
+  function handleMouseMove(e) {
+    const coords = [
+      e.clientX - canvasRef.current.offsetLeft,
+      e.pageY - canvasRef.current.offsetTop
+    ]
+    if (drawing) { 
+      ctx.current.lineTo(...coords)
+      ctx.current.stroke()
+    }
+  }
+ // begin path / start drawing
+  function startDrawing(e) {
+    ctx.current.lineJoin = 'round'
+    ctx.current.lineCap = 'round'
+    ctx.current.lineWidth = 20
+        // get background color and set brush color
+        const appDiv = document.querySelector("body")
+        const appStyle = getComputedStyle(appDiv)
+        const color = appStyle.backgroundColor    
+    ctx.current.strokeStyle = color
+    ctx.current.beginPath();
+    // actual coordinates
+    ctx.current.moveTo(
+      e.clientX - canvasRef.current.offsetLeft,
+      e.pageY - canvasRef.current.offsetTop
+    )
+  }
+
+  function stopDrawing() {
+    ctx.current.closePath()
+  }
+
+  //clear function
+  function handleClear() {
+    ctx.current.clearRect(0, 0, 415, 415)
+ }
+// ------- DRAW end ----- // 
+
+ // ------- TIMER 
   // Reset if reset/start is clicked in parent.
   useEffect(() => {
     handleClear()
@@ -30,80 +101,21 @@ export default function Canvas(props) {
       setDrawing(false)
     } 
   }, [props.ifFinished])
-
-  // push imgArr to App
-  useEffect(() => {
-    props.getArr(imgArr)
-  }, [imgArr])
-
-  // push img Src and Title to imgArr state when POST is clicked
-  useEffect(()=>{
-    const dataURI = canvasRef.current.toDataURL();
-    setImgArr(item =>  { return[...item, { src: dataURI, title: title, id: imgArr.length }] }  )
-    console.log('post clicked ')
-  },[props.onPostClick] )
-    
-
-   //clear function
-  function handleClear() {
-     ctx.current.clearRect(0, 0, 415, 415)
-  }
-
-  // draw when moving mouse if draw = true
-  function handleMouseMove(e) {
-    const coords = [
-      e.clientX - canvasRef.current.offsetLeft,
-      e.pageY - canvasRef.current.offsetTop
-    ]
-    if (drawing) { 
-      ctx.current.lineTo(...coords)
-      ctx.current.stroke()
-    }
-  }
-
- // begin path / start drawing
-  function startDrawing(e) {
-    ctx.current.lineJoin = 'round'
-    ctx.current.lineCap = 'round'
-    ctx.current.lineWidth = 20
-        // define background color
-        const appDiv = document.querySelector(".app")
-        const appStyle = getComputedStyle(appDiv)
-        const color = appStyle.backgroundColor    
-    ctx.current.strokeStyle = color
-    ctx.current.beginPath();
-    // actual coordinates
-    ctx.current.moveTo(
-      e.clientX - canvasRef.current.offsetLeft,
-      e.pageY - canvasRef.current.offsetTop
-    )
-    // console.log(props.bgColor)
-  }
-
-  function stopDrawing() {
-    ctx.current.closePath()
-    // setDrawing(false)
-  }
-
-  // set current title state when typing to input
-  function inputTitle(event){
-    event.preventDefault()
-      setTitle(event.target.value)
-   }
-
-
+   // ------- TIMER end ----- // 
 
   return (
     <div className ="canvas">
-      {props.ifFinished ? 
+      <button onClick ={clickPost}>post</button>
+      {/* {props.ifFinished ?  */}
         <input 
           type="text" 
           name="title" 
           placeholder ="TITLE" 
           autoComplete="off"  
           onChange={inputTitle} 
+          // value={title}
         /> 
-      : null}
+      {/* : null} */}
 
       <div className ="canvas__rect">
         <canvas
@@ -117,6 +129,9 @@ export default function Canvas(props) {
         onMouseMove={handleMouseMove}
         />
       </div>
+           {/* <div className ="canvasImgArray">
+                {imgArr.slice(1)}
+            </div>    */}
     </div>
   )
 }

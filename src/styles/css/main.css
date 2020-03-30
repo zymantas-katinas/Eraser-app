@@ -85,10 +85,10 @@ select {
 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: #3AAFA9;
 }
 
 .app {
-  background-color: #3AAFA9;
   padding-bottom: 100px;
 }
 
