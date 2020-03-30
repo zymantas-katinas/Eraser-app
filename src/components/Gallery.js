@@ -4,9 +4,10 @@ function Gallery(props){
     
     return (
         <div>
-            <div className ="canvasImgArray">
+            <h1> gallery </h1>
+            {/* <div className ="canvasImgArray">
                 {props.allImg.slice(1)}
-            </div>   
+            </div>    */}
         </div>
             
     )

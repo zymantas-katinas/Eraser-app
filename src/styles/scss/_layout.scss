@@ -3,6 +3,19 @@
     padding-bottom: 100px;
 }
 
+nav {
+    // position: fixed;
+    background-color: $col4;
+    padding: 10px 20%;
+    & .navList {
+        color: $col2;
+        font-size: 1.3rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
 header {
     padding: 3rem;
     text-align: center;

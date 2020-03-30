@@ -1,10 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
-import Header from './components/Header'
-import Gallery from './components/Gallery'
-import Countdown from './components/Countdown'
-import Canvas from './components/Canvas'
-import Start from './components/Start'
-
+import Nav from './components/Nav';
+import Header from './components/Header';
+import Gallery from './components/Gallery';
+import Countdown from './components/Countdown';
+import Canvas from './components/Canvas';
+import Start from './components/Start';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+ 
 function App() {
 
   const [clock, setClock] = useState(10)
@@ -16,8 +18,6 @@ function App() {
   const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
 
   //
-
-
 
   // start stop timer
   useEffect(() => {   
@@ -54,7 +54,6 @@ function App() {
         setClock(10)
         setLimit(10)    
       }
-      console.log(global.test)
    }
    // update post state when clicked to initiate useEffect in canvas to push img
   function postClick(){
@@ -76,28 +75,32 @@ function App() {
   }
 
   return (
-    <div  onMouseMove ={handleMouseMove} className = "app" >
-      <div className ="pointer" style ={pointerStyle}></div>
-      <Header />
-      <Countdown
-         time = {clock} 
-         clickPost = {postClick}
-      />
-      <Canvas 
-        ifStart = {startRestart} 
-        ifFinished = {finished} 
-        getArr = {getArr} 
-        onPostClick ={post} 
-        bgColor = {pointerPos.color}
-      />
-      <Start  
-        ifStart = {startRestart} 
-        onClick ={reset} 
-      />
-      <Gallery 
-        allImg = {allImg}
-      />
-    </div>
+    <Router>
+      <div  onMouseMove ={handleMouseMove} className = "app" >
+        <div className ="pointer" style ={pointerStyle}></div>
+        <Nav />
+        <Header />
+        <Countdown
+          time = {clock} 
+          clickPost = {postClick}
+        />
+        <Canvas 
+          ifStart = {startRestart} 
+          ifFinished = {finished} 
+          getArr = {getArr} 
+          onPostClick ={post} 
+          bgColor = {pointerPos.color}
+        />
+        <Start  
+          ifStart = {startRestart} 
+          onClick ={reset} 
+        />
+        {/* <Route path="/gallery" component= {Gallery} /> */}
+        <Gallery 
+          allImg = {allImg}
+        />
+      </div>
+    </Router>
   );
 }
 
