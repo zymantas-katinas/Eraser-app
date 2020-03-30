@@ -43,8 +43,7 @@ function Draw() {
     if(clock === limit && clock !== 0){
         setStartRestart("reset")
         setLimit(0)  
-        setClock(clock - 1)    
-        
+        setClock(clock - 1)       
     } else {
         setStartRestart("start")
         setClock(10)

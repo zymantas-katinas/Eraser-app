@@ -4,7 +4,8 @@ function Countdown(props){
 
     return (
         <div className = "countdown">
-            {props.time !== 0 ? <h1>{props.time}s</h1> : <button onClick ={props.clickPost}>post</button>}
+            {props.time !== 0 ? <h1>{props.time}s</h1> : null}
+             {/* <h1>{props.time}</h1> */}
         </div>
         
     )

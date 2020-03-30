@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 
 export default function Canvas(props) {
   const [drawing, setDrawing] = useState(false)
@@ -24,8 +24,8 @@ export default function Canvas(props) {
     }
     
     function clickPost(){
-      // axios.post('http://localhost:3000/artpieces/add', artpiece)
-      // .then(res => console.log(res.data));
+      axios.post('http://localhost:5000/artpieces/add', artpiece)
+      .then(res => console.log(res.data));
       console.log(artpiece)
     }
 
@@ -105,17 +105,21 @@ export default function Canvas(props) {
 
   return (
     <div className ="canvas">
-      <button onClick ={clickPost}>post</button>
-      {/* {props.ifFinished ?  */}
-        <input 
-          type="text" 
-          name="title" 
-          placeholder ="TITLE" 
-          autoComplete="off"  
-          onChange={inputTitle} 
-          // value={title}
-        /> 
-      {/* : null} */}
+        
+      
+      {props.ifFinished ? 
+       <div>
+          <button onClick ={clickPost}>post</button>
+          <input 
+            type="text" 
+            name="title" 
+            placeholder ="TITLE" 
+            autoComplete="off"  
+            onChange={inputTitle} 
+            // value={title}
+          /> 
+        </div>
+      : null}
 
       <div className ="canvas__rect">
         <canvas

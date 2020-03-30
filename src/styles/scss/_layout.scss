@@ -85,19 +85,38 @@ header {
         }
     }
 }
-.canvasImgArray {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
+.gallery {
+    // margin: 50px auto;
     text-align: center;
-    & img{
-        margin: 10px;
-        width: 80px;
-        height: 80px;
-        background-color: $col5;
-        border-radius: 5px;
+    color: $col5;
+    &__artpieces {
+        margin: 50px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        text-align: center;
+       
     }
-
+    &__artpiece {
+        margin: 10px;
+        width: calc(20% - 20px);
+        // height: calc(20% - 10px);
+        & img {
+            background-color: $col5;
+            border-radius: 5px;
+        }   
+    }
+}
+.size {
+    // margin: 500px 20px;
+    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    width: 100%;
+    margin: 10%;
+    // display: block;
+    // height: 100vh;
+    // margin: 0 auto;
 }
 
 
@@ -109,31 +128,32 @@ header {
     & h1 {
         margin: 15px auto;
     }
-    & button {
-        box-shadow: 3px 2px 19px -5px rgba(0,0,0,0.62);
-        width: 400px;
-        margin: 40px auto 0;
-        font-size: 1.5rem;
-        color: $col3;
-        background-color: $col4;
-        text-transform: uppercase;
-        font-weight: 700;
+}
+
+button {
+    box-shadow: 3px 2px 19px -5px rgba(0,0,0,0.62);
+    width: 400px;
+    margin: 40px auto 0;
+    font-size: 1.5rem;
+    color: $col3;
+    background-color: $col4;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 0;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+    &:focus {
+        outline: none;
         border: 0;
-        border-radius: 5px;
-        transition: 0.2s ease-in-out;
-        &:focus {
-            outline: none;
-            border: 0;
-            // box-shadow: none;
-        }
-        &:hover {
-            background-color: $col5;
-            // cursor: pointer;
-        }
-        &:active {
-            box-shadow: none;
-            color: $col2;
-        }
+        // box-shadow: none;
+    }
+    &:hover {
+        background-color: $col5;
+        // cursor: pointer;
+    }
+    &:active {
+        box-shadow: none;
+        color: $col2;
     }
 }
 
