@@ -19,8 +19,7 @@ export default function Canvas(props) {
       username: "zymka je",
       title: title,
       uri: src,
-      duration: 10,
-      date: "2020-03-29T16:01:46.303Z"
+      duration: props.drawingTime,
     }
     
     function clickPost(){
@@ -105,11 +104,10 @@ export default function Canvas(props) {
 
   return (
     <div className ="canvas">
-        
-      
+
       {props.ifFinished ? 
        <div>
-          <button onClick ={clickPost}>post</button>
+          <button className ="wideBtn" onClick ={clickPost}>post</button>
           <input 
             type="text" 
             name="title" 
@@ -133,9 +131,6 @@ export default function Canvas(props) {
         onMouseMove={handleMouseMove}
         />
       </div>
-           {/* <div className ="canvasImgArray">
-                {imgArr.slice(1)}
-            </div>    */}
     </div>
   )
 }

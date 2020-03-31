@@ -18,17 +18,33 @@ function Gallery(){
         })   
     },[])
     
-    function artpieceClick(e){
-    //    galleryArtpiece.current.classList.toggle("size")
-         e.target.classList.toggle("size")
+    // onClick={artpieceClick}
+    // function artpieceClick(e){
+    // //    galleryArtpiece.current.classList.toggle("size")
+    //     //  e.target.classList.toggle("size")
+    //      console.log(e.target)
+    // }
+
+    function deleteArtpiece(id){
+        // axios.delete('http://localhost:5000/artpieces/'+id)
+        // .then(response => { console.log(response.data)});
+  
+        // setArtpieces(
+        //     artpieces.filter(el => el._id !== id)
+        // )
+        console.log(id)
     }
+  
+    
 
     const all = artpieces.map(item => { 
-            return (
-                <div onClick={artpieceClick} key={item._id} className ="gallery__artpiece">
-                    <img src={item.uri} alt="artpiece" /> 
-                    <p>{item.title}</p> 
-                </div>)
+        return (
+                <div  key={item._id} className ="gallery__artpiece">
+                    <button onClick={deleteArtpiece(item._id)} className = "del">x</button>
+                    <img  src={item.uri} alt="artpiece" /> 
+                    <p>{item.title}</p>
+                </div>
+        )
      })
  
 

@@ -12,14 +12,12 @@ router.route('/add').post((req, res) => {
   const title = req.body.title;
   const uri = req.body.uri;
   const duration = Number(req.body.duration);
-  const date = Date.parse(req.body.date);
 
   const newArtpiece = new Artpiece({
     username,
     title,
     uri,
     duration,
-    date,
   });
 
   newArtpiece.save()

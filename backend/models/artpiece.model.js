@@ -8,7 +8,6 @@ const artpieceSchema = new Schema({
   title: { type: String, required: true },
   uri: { type: String, required: true },
   duration: { type: Number, required: true },
-  date: { type: Date, required: true },
 }, {
   timestamps: true,
 });
