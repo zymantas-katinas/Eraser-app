@@ -10,6 +10,7 @@ function Draw() {
   const [startRestart, setStartRestart] = useState("start")
   const [finished, setFinished] = useState(false)
   const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
+  
 
   // start stop timer
   useEffect(() => {   
