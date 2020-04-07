@@ -1,5 +1,5 @@
 import React , {useState, useEffect, useRef} from 'react';
-import Artpiece from './Artpiece'
+import Artpiece from './Artpiece.jsx'
 import axios from 'axios';
 
 
@@ -14,6 +14,7 @@ function Gallery(){
         .then(response => {
             setLoading(false)
             setArtpieces(response.data)  
+            console.log(response)
         })
         .catch((error) => {
           console.log(error);
@@ -39,7 +40,7 @@ function Gallery(){
         <div className ="gallery">
             <h1> GALLERY </h1>
             <div className ="gallery__artpieces">
-               {loading ?  <div class="lds-ripple"><div></div><div></div></div> : all}
+               {loading ?  <div className="lds-ripple"><div></div><div></div></div> : all}
             </div>   
         </div>
             

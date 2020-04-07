@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
-import Nav from './components/Nav';
-import Header from './components/Header';
-import Gallery from './components/Gallery';
-import Draw from './components/Draw'
+import Nav from './components/Nav.jsx';
+import Header from './components/Header.jsx';
+import Gallery from './components/Gallery.jsx';
+import Draw from './components/Draw.jsx'
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
  
