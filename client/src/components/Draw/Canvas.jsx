@@ -26,7 +26,8 @@ export default function Canvas(props) {
       duration: props.drawingTime,
     }
     function clickPost(){
-      axios.post('http://localhost:5000/artpieces/add', artpiece)
+      // axios.post('http://localhost:5000/artpieces/add', artpiece)
+      axios.post('https://lit-taiga-41373.herokuapp.com/artpieces/add', artpiece)
       .then(res => console.log(res.data));
       console.log(artpiece)
     }

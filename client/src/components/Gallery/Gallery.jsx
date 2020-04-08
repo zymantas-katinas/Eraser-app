@@ -9,7 +9,8 @@ function Gallery(){
 
     // load artpieces 
     useEffect(()=> {
-        axios.get('http://localhost:5000/artpieces/')
+        // axios.get('http://localhost:5000/artpieces/')  
+        axios.get('https://lit-taiga-41373.herokuapp.com/artpieces/')
         .then(response => {
             setLoading(false)
             setArtpieces(response.data)  
@@ -20,7 +21,8 @@ function Gallery(){
     },[])
 
     const deleteArtpiece = (id) => {
-        axios.delete('http://localhost:5000/artpieces/'+id)
+        // axios.delete('http://localhost:5000/artpieces/'+id)
+        axios.delete('https://lit-taiga-41373.herokuapp.com/artpieces/'+id)
         .then(response => { console.log(response.data)});
 
         setArtpieces(
