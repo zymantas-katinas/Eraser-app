@@ -1,15 +1,9 @@
-import React ,{useState, useEffect} from 'react'
+import React from 'react'
 
 function Artpiece(props){
 
-
     function artpieceClick(e){
         e.currentTarget.classList.toggle("size")
-
-        // const allDivs = Object.values(document.querySelectorAll(".gallery__artpiece"))
-        // const otherDivs = allDivs.filter(div => div !== e.currentTarget)
-        // otherDivs.map(div => div.classList.toggle("displayNone"))
-
     }
 
     return (

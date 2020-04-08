@@ -1,17 +1,16 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import Countdown from './Countdown';
 import Canvas from './Canvas';
 import Start from './Start';
+import {timeLimit} from '../../utils/constants'
 
- 
 function Draw() {
-  const [clock, setClock] = useState(10)
-  const [limit, setLimit] = useState(10)
+  const [clock, setClock] = useState(timeLimit)
+  const [limit, setLimit] = useState(timeLimit)
   const [startRestart, setStartRestart] = useState("start")
   const [finished, setFinished] = useState(false)
   const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
   
-
   // start stop timer
   useEffect(() => {   
     if(clock === 0){
@@ -26,22 +25,21 @@ function Draw() {
     }, 
   [clock, limit])
 
-
   // change time and start/restart button onClick
-  function reset(){
+  const reset = () => {
     if(clock === limit && clock !== 0){
         setStartRestart("reset")
         setLimit(0)  
         setClock(clock - 1)       
     } else {
         setStartRestart("start")
-        setClock(10)
-        setLimit(10)    
+        setClock(timeLimit)
+        setLimit(timeLimit)    
       }
    }
 
   // define style for Pointer
-  let pointerStyle = {
+  const pointerStyle = {
     top: pointerPos.y - 10 + "px", 
     left: pointerPos.x - 10 + "px", 
     color: pointerPos.color
@@ -55,7 +53,6 @@ function Draw() {
       })
     }
   
-
   return (
       <div  onMouseMove ={handleMouseMove} >
         <div className ="pointer" style ={pointerStyle}></div>

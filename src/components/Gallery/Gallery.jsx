@@ -1,7 +1,6 @@
-import React , {useState, useEffect, useRef} from 'react';
+import React , {useState, useEffect} from 'react';
 import Artpiece from './Artpiece.jsx'
 import axios from 'axios';
-
 
 function Gallery(){
 
@@ -14,14 +13,13 @@ function Gallery(){
         .then(response => {
             setLoading(false)
             setArtpieces(response.data)  
-            console.log(response)
         })
         .catch((error) => {
           console.log(error);
         })   
     },[])
 
-    function deleteArtpiece(id){
+    const deleteArtpiece = (id) => {
         axios.delete('http://localhost:5000/artpieces/'+id)
         .then(response => { console.log(response.data)});
 

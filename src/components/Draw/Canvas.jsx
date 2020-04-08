@@ -3,39 +3,33 @@ import axios from 'axios';
 
 export default function Canvas(props) {
   const [drawing, setDrawing] = useState(false)
-
   const [title, setTitle] = useState("")
   const [src, setSrc] = useState()
 
-  
-  //----- POST data to DB
+  // set drawing URI to state when time is finished
+  useEffect(()=>{
+    const dataURI = canvasRef.current.toDataURL();
+    setSrc(dataURI)
+  },[props.ifFinished] )  
+
   // set current title state when typing to input
   function inputTitle(event){
     event.preventDefault()
       setTitle(event.target.value)
-      // console.log(title)
     }
+    
+  //----- POST artpiece to DB when post is clicked
     const artpiece = {
       username: "zymka je",
       title: title,
       uri: src,
       duration: props.drawingTime,
     }
-    
     function clickPost(){
       axios.post('http://localhost:5000/artpieces/add', artpiece)
       .then(res => console.log(res.data));
       console.log(artpiece)
     }
-
-  // push img Src and Title to imgArr state when POST is clicked
-  useEffect(()=>{
-    const dataURI = canvasRef.current.toDataURL();
-    setSrc(dataURI)
-  },[props.ifFinished] )
-    
-  //----- POST data to DB end ----- // 
-
 
  // ------- DRAW 
  const canvasRef = useRef()
@@ -81,7 +75,6 @@ export default function Canvas(props) {
   function handleClear() {
     ctx.current.clearRect(0, 0, 415, 415)
  }
-// ------- DRAW end ----- // 
 
  // ------- TIMER 
   // Reset if reset/start is clicked in parent.
@@ -100,7 +93,7 @@ export default function Canvas(props) {
       setDrawing(false)
     } 
   }, [props.ifFinished])
-   // ------- TIMER end ----- // 
+
 
   return (
     <div className ="canvas">
@@ -114,7 +107,7 @@ export default function Canvas(props) {
             placeholder ="TITLE" 
             autoComplete="off"  
             onChange={inputTitle} 
-            // value={title}
+            value={title}
           /> 
         </div>
       : null}

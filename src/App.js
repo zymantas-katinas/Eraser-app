@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
 import Nav from './components/Nav.jsx';
 import Header from './components/Header.jsx';
-import Gallery from './components/Gallery.jsx';
-import Draw from './components/Draw.jsx'
+import Gallery from './components/Gallery/Gallery.jsx';
+import Draw from './components/Draw/Draw.jsx';
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
  
 function App() {
 
