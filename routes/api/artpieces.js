@@ -1,5 +1,6 @@
 const router = require('express').Router();
-let Artpiece = require('../models/artpiece.model');
+// let Artpiece = require('../models/artpiece.model');
+const Artpiece = require('../../models/artpiece.model');
 
 router.route('/').get((req, res) => {
   Artpiece.find()

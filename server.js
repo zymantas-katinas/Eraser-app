@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const path = require('path')
+const path = require('path');
 
 require('dotenv').config();
 
@@ -33,11 +33,11 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-const artpiecesRouter = require('./routes/artpieces');
-const usersRouter = require('./routes/users');
+const artpiecesRouter = require('./routes/api/artpieces');
+const usersRouter = require('./routes/api/users');
 
-app.use('/artpieces', artpiecesRouter);
-app.use('/users', usersRouter);
+app.use('/api/artpieces', artpiecesRouter);
+app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
