@@ -11,6 +11,9 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/artpieces', artpiecesRouter);
+app.use('/api/users', usersRouter);
+
 // serve static assets if in production 
 if(process.env.NODE_ENV === 'production') {
   // set static server
@@ -35,9 +38,6 @@ connection.once('open', () => {
 
 const artpiecesRouter = require('./routes/api/artpieces');
 const usersRouter = require('./routes/api/users');
-
-app.use('/api/artpieces', artpiecesRouter);
-app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
