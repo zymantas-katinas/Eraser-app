@@ -1,1 +1,1 @@
-export const timeLimit = 6;
+export const timeLimit = 10;
