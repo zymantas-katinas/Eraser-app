@@ -140,8 +140,9 @@ export default function Canvas(props) {
     } 
   }, [props.ifFinished])
 
+  // shake canvas onclick when not drawing
   const shake = () => {
-    if(props.ifFinished) {
+    if(!drawing) {
       canvasRect.current.style.transition = "0"
       let count = 1
       const shaker = setInterval(() => {
@@ -154,8 +155,8 @@ export default function Canvas(props) {
           canvasRect.current.style.transform = "rotate(-5deg)"
         }
         if(count > 20){
-          canvasRect.current.style.transform = "translate(0)"
-          canvasRect.current.style.transform = "rotate(0)"
+          canvasRect.current.style.transform = "none"
+          canvasRect.current.style.transform = "none"
           clearInterval(shaker)
         }
       }, 50)
@@ -188,8 +189,9 @@ export default function Canvas(props) {
         // onMouseUp={stopDrawing}
         onMouseOver={startDrawing}
         onMouseOut={stopDrawing}
-        onTouchStart={startDrawing}
         onMouseMove={handleMouseMove}
+        
+        onTouchStart={startDrawing}
         onTouchMove={handleMouseMove}
         />
       </div>
