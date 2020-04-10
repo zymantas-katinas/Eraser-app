@@ -188,7 +188,9 @@ export default function Canvas(props) {
         // onMouseUp={stopDrawing}
         onMouseOver={startDrawing}
         onMouseOut={stopDrawing}
+        onTouchStart={startDrawing}
         onMouseMove={handleMouseMove}
+        onTouchMove={handleMouseMove}
         />
       </div>
     </div>
