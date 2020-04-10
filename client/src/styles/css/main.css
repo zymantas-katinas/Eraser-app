@@ -146,7 +146,8 @@ nav .navList .link {
 }
 
 nav .navList .link:hover {
-  font-size: 1.5rem;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 header {
@@ -287,7 +288,7 @@ header p {
 }
 
 .gallery__artpieces {
-  margin: 50px 20px;
+  margin: 50px 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -300,15 +301,15 @@ header p {
 }
 
 .gallery__artpiece {
-  margin: 10px;
-  width: calc(20% - 20px);
+  margin: 2%;
+  width: calc(16%);
   -webkit-transition: 0.1s ease-in-out;
   transition: 0.1s ease-in-out;
 }
 
 .gallery__artpiece:hover {
-  margin: 5px;
-  width: calc(20% - 10px);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .gallery__artpiece:hover .del {

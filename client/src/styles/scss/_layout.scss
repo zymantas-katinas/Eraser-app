@@ -1,6 +1,4 @@
 .app {
-    // background-color: $col3;
-    // min-height: 100%;
     padding-bottom: 100px;
 }
 
@@ -19,13 +17,11 @@ nav {
             text-decoration: none;
             transition: 0.1s ease-in-out; 
             &:hover {           
-                font-size: 1.5rem;
-                // size: 120%;
+                transform: scale(1.2)
             }
         }
     }
 }
-
 
 header {
     padding: 3rem;
@@ -69,11 +65,6 @@ header {
     }
     &__rectPostClick {
         transition: 0.3s ease-out;
-        // transform: translate(500px)
-        // & canvas {
-        //     transition: 0.5s ease-out;
-        //     transform: translate(500px)
-        // }
     }
     &__btnInput {
         display: flex;
@@ -119,19 +110,20 @@ header {
     text-align: center;
     color: $col5;
     &__artpieces {
-        margin: 50px 20px;
+        margin: 50px 10%;
         display: flex;
         flex-wrap: wrap;
         justify-content: left;
         text-align: center;
     }
     &__artpiece {
-        margin: 10px;
-        width: calc(20% - 20px);
+        margin: 2%;
+        width: calc(16% ); 
         transition: 0.1s ease-in-out;
         &:hover {
-            margin: 5px;
-            width: calc(20% - 10px);
+            // margin: 5px; 
+            transform: scale(1.2);
+            // width: calc(20% - 10px);
             & .del {
                 opacity: 1;
             }
@@ -165,6 +157,7 @@ header {
     
     }
 }
+// selected gallery artpiece
 .size {
     position: fixed;
     top: 0;
@@ -181,7 +174,6 @@ header {
         margin: auto;
     }
     & img{
-    
         box-shadow: 0px 0px 159px 133px $col3; 
     }   
     & p {
@@ -201,20 +193,16 @@ header {
     display: none;
 }
 
-
 .countdown {
     color: $col5;
     text-align: center;
     display: flex;
     flex-direction: column;
     & h1 {
-        // transition: 0.3s ease-in-out;
         font-size: 3rem;
         margin: 30px auto;
     }
 }
-
-
 
 .pointer {
     width: 21px;
@@ -225,6 +213,4 @@ header {
     border-radius: 50%;
     position: absolute;
     pointer-events: none;
-    // cursor: none;
-    // transition: 0.2s ease-in-out;
 }
