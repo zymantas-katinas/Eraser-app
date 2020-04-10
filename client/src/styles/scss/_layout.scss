@@ -58,37 +58,63 @@ header {
         border-radius: 5px;
         width: 400px;
         height: 400px;
-        
+        opacity: 1;
+        transition: 0.5s ease-out;
     }
-    & input {
-        width: 400px;
-        margin: 20px auto 40px;
-        text-align: center;
-        // font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-size: 1.5rem;
-        background-color: $col3;
-        color: $col5; 
-        border: none;
-        border-radius: 5px;
-        box-shadow: inset 3px 2px 19px -5px rgba(0,0,0,0.62);
-        transition: 0.1s ease-in-out;
-        ::placeholder {
-            color: $col4; 
+    &__rectFinished {
+        transition: 0.2s ease-in;
+        transform: scale(1.05);
+        opacity: 0.8;
+        background-color: $col4;
+    }
+    &__rectPostClick {
+        transition: 0.3s ease-out;
+        // transform: translate(500px)
+        // & canvas {
+        //     transition: 0.5s ease-out;
+        //     transform: translate(500px)
+        // }
+    }
+    &__btnInput {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & button {
+            opacity: 0.3;
+            margin: 5px 0 0;
         }
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            background-color: $col4;
-            &::placeholder {
-                color: $col3; 
+    
+        & input {
+            width: 400px;
+            margin: 25px auto;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background-color: $col3;
+            color: $col5; 
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 3px 2px 19px -5px rgba(0,0,0,0.62);
+            transition: 0.1s ease-in-out;
+            ::placeholder {
+                color: $col4; 
             }
-            cursor: none;
-          
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                background-color: $col4;
+                &::placeholder {
+                    color: $col3; 
+                }
+                cursor: none;
+            }
         }
     }
+  
+    
 }
+
 .gallery {
     text-align: center;
     color: $col5;
@@ -182,7 +208,9 @@ header {
     display: flex;
     flex-direction: column;
     & h1 {
-        margin: 15px auto;
+        // transition: 0.3s ease-in-out;
+        font-size: 3rem;
+        margin: 30px auto;
     }
 }
 

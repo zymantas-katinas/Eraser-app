@@ -9,12 +9,11 @@ function Gallery(){
 
     // load artpieces 
     useEffect(()=> {
-        // axios.get('http://localhost:5000/artpieces/')  
         axios.get('/api/artpieces/')
         .then(response => {
             setLoading(false)
             setArtpieces(response.data)  
-            console.log(response.data)
+            // console.log(response)
         })
         .catch((error) => {
           console.log(error);
@@ -22,7 +21,6 @@ function Gallery(){
     },[])
 
     const deleteArtpiece = (id) => {
-        // axios.delete('http://localhost:5000/artpieces/'+id)
         axios.delete('/api/artpieces/'+id)
         .then(response => { console.log(response.data)});
 

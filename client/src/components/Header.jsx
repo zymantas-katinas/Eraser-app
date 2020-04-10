@@ -1,6 +1,7 @@
 import React from "react"
 
 function Header(){
+
     return (
         <header>
             <h1> ERASER <span>MINUTE</span> </h1>

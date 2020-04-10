@@ -92,7 +92,7 @@ body {
   -webkit-box-shadow: 3px 2px 19px -5px rgba(0, 0, 0, 0.62);
           box-shadow: 3px 2px 19px -5px rgba(0, 0, 0, 0.62);
   width: 400px;
-  margin: 40px auto 0;
+  margin: 25px auto;
   font-size: 1.5rem;
   color: #3AAFA9;
   background-color: #2B7A78;
@@ -187,11 +187,46 @@ header p {
   border-radius: 5px;
   width: 400px;
   height: 400px;
+  opacity: 1;
+  -webkit-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
 }
 
-.canvas input {
+.canvas__rectFinished {
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  opacity: 0.8;
+  background-color: #2B7A78;
+}
+
+.canvas__rectPostClick {
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.canvas__btnInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.canvas__btnInput button {
+  opacity: 0.3;
+  margin: 5px 0 0;
+}
+
+.canvas__btnInput input {
   width: 400px;
-  margin: 20px auto 40px;
+  margin: 25px auto;
   text-align: center;
   font-weight: 700;
   font-size: 1.5rem;
@@ -205,44 +240,44 @@ header p {
   transition: 0.1s ease-in-out;
 }
 
-.canvas input ::-webkit-input-placeholder {
+.canvas__btnInput input ::-webkit-input-placeholder {
   color: #2B7A78;
 }
 
-.canvas input :-ms-input-placeholder {
+.canvas__btnInput input :-ms-input-placeholder {
   color: #2B7A78;
 }
 
-.canvas input ::-ms-input-placeholder {
+.canvas__btnInput input ::-ms-input-placeholder {
   color: #2B7A78;
 }
 
-.canvas input ::placeholder {
+.canvas__btnInput input ::placeholder {
   color: #2B7A78;
 }
 
-.canvas input:focus {
+.canvas__btnInput input:focus {
   outline: none;
 }
 
-.canvas input:hover {
+.canvas__btnInput input:hover {
   background-color: #2B7A78;
   cursor: none;
 }
 
-.canvas input:hover::-webkit-input-placeholder {
+.canvas__btnInput input:hover::-webkit-input-placeholder {
   color: #3AAFA9;
 }
 
-.canvas input:hover:-ms-input-placeholder {
+.canvas__btnInput input:hover:-ms-input-placeholder {
   color: #3AAFA9;
 }
 
-.canvas input:hover::-ms-input-placeholder {
+.canvas__btnInput input:hover::-ms-input-placeholder {
   color: #3AAFA9;
 }
 
-.canvas input:hover::placeholder {
+.canvas__btnInput input:hover::placeholder {
   color: #3AAFA9;
 }
 
@@ -370,7 +405,8 @@ header p {
 }
 
 .countdown h1 {
-  margin: 15px auto;
+  font-size: 3rem;
+  margin: 30px auto;
 }
 
 .pointer {

@@ -45,13 +45,13 @@ function Draw() {
     color: pointerPos.color
   }
     // define pointer position on mouseMove
-    function handleMouseMove(e){
-      const x = e.clientX 
-      const y = e.pageY
-      setPointerPos({
-        x, y
-      })
-    }
+  function handleMouseMove(e){
+    const x = e.clientX 
+    const y = e.pageY
+    setPointerPos({
+      x, y
+    })
+  }
   
   return (
       <div  onMouseMove ={handleMouseMove} >
@@ -62,6 +62,7 @@ function Draw() {
           ifFinished = {finished} 
           bgColor = {pointerPos.color}
           drawingTime = {limit}
+          reset = {reset}
         />
         <Start  
           ifStart = {startRestart} 

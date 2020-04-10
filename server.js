@@ -27,7 +27,6 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-// const uri = "mongodb+srv://zymka_01:PrVatFSd123gRyEc@cluster0-9pt3u.gcp.mongodb.net/test?retryWrites=true&w=majority";
 const uri = process.env.MONGODB_URI || process.env.ATLAS_URI;
 mongoose.connect(uri, { 
   useNewUrlParser: true, 
