@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 
-// require('dotenv').config();
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -27,8 +27,8 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-const uri = "mongodb+srv://zymka_01:PrVatFSd123gRyEc@cluster0-9pt3u.gcp.mongodb.net/test?retryWrites=true&w=majority";
-// const uri = process.env.MONGODB_URI;
+// const uri = "mongodb+srv://zymka_01:PrVatFSd123gRyEc@cluster0-9pt3u.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI || process.env.ATLAS_URI;
 mongoose.connect(uri, { 
   useNewUrlParser: true, 
   useCreateIndex: true
