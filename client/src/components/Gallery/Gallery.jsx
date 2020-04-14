@@ -13,7 +13,6 @@ function Gallery(){
         .then(response => {
             setLoading(false)
             setArtpieces(response.data)  
-            // console.log(response)
         })
         .catch((error) => {
           console.log(error);
@@ -37,7 +36,7 @@ function Gallery(){
 
     return (
         <div className ="gallery">
-            <h1> GALLERY </h1>
+            {/* <h1> GALLERY </h1> */}
             <div className ="gallery__artpieces">
                {loading ?  <div className="lds-ripple"><div></div><div></div></div> : all}
             </div>   

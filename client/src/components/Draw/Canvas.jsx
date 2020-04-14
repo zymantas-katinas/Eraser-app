@@ -31,7 +31,7 @@ export default function Canvas(props) {
   }
   const clickPost = () => {  
     if(title){
-      axios.post('/api/artpieces/', artpiece)
+      axios.post('/api/artpieces/add', artpiece)
       .then(res => console.log(res.data));
 
       // styling when post clicked

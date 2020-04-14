@@ -9,7 +9,6 @@ function Draw() {
   const [limit, setLimit] = useState(timeLimit)
   const [startRestart, setStartRestart] = useState("start")
   const [finished, setFinished] = useState(false)
-  const [pointerPos, setPointerPos] = useState([{x: 0, y: 0}])
   
   // start stop timer
   useEffect(() => {   
@@ -38,29 +37,12 @@ function Draw() {
       }
    }
 
-  // define style for Pointer
-  const pointerStyle = {
-    top: pointerPos.y - 10 + "px", 
-    left: pointerPos.x - 10 + "px", 
-    color: pointerPos.color
-  }
-    // define pointer position on mouseMove
-  function handleMouseMove(e){
-    const x = e.clientX 
-    const y = e.pageY
-    setPointerPos({
-      x, y
-    })
-  }
-  
   return (
-      <div  onMouseMove ={handleMouseMove} >
-        <div className ="pointer" style ={pointerStyle}></div>
+      <div   >
         <Countdown time = {clock} />
         <Canvas 
           ifStart = {startRestart} 
           ifFinished = {finished} 
-          bgColor = {pointerPos.color}
           drawingTime = {limit}
           reset = {reset}
         />

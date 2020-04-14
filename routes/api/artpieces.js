@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const Artpiece = require('../../models/artpiece.model');
-const auth = require('../../middleware/auth');
 
 router.route('/').get((req, res) => {
   Artpiece.find()

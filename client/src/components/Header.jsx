@@ -4,7 +4,7 @@ function Header(){
 
     return (
         <header>
-            <h1> ERASER <span>MINUTE</span> </h1>
+            <h1> ERASER <span>CHALLENGE</span> </h1>
             <p>Limitations boosts creativity.</p>
         </header>
     )

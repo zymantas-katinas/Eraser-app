@@ -5,8 +5,8 @@ function Nav(){
     return (
         <nav> 
             <ul className="navList">
-                <Link to={'gallery'} className ="link"> <li>Gallery</li> </Link>              
-                <Link to={'draw'} className ="link"><li>Erase!</li></Link>
+                <Link to={'/gallery'} className ="link"> <li>Gallery</li> </Link>              
+                <Link to={'/draw'} className ="link"><li>Erase!</li></Link>
             </ul>
         </nav>
     )

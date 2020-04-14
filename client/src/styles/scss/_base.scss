@@ -15,7 +15,6 @@ $asd: rgba(114, 115, 116, 0);
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: $col3;
-    // cursor: none;
 }
 
 %button {
@@ -33,11 +32,10 @@ body {
     &:focus {
         outline: none;
         border: 0;
-        // box-shadow: none;
     }
     &:hover {
         background-color: $col5;
-        // cursor: pointer;
+        cursor: none;
     }
     &:active {
         box-shadow: none;
