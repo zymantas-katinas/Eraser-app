@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Artpiece = require('../../models/artpiece.model');
+const auth = require('../../middleware/auth');
 
 router.route('/').get((req, res) => {
   Artpiece.find()
@@ -7,7 +8,9 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// post artpiece
 router.route('/add').post((req, res) => {
+
   const username = req.body.username;
   const title = req.body.title;
   const uri = req.body.uri;

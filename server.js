@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
-
-require('dotenv').config();
+const config = require('config')
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -13,6 +12,7 @@ app.use(express.json());
 
 app.use('/api/artpieces', require('./routes/api/artpieces'));
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // serve static assets if in production 
 if(process.env.NODE_ENV === 'production') {
@@ -24,7 +24,8 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-const uri = process.env.MONGODB_URI || process.env.ATLAS_URI;
+// const uri = process.env.MONGODB_URI || process.env.ATLAS_URI; 
+const uri = process.env.MONGODB_URI || config.get('mongoURI')
 mongoose.connect(uri, { 
   useNewUrlParser: true, 
   useCreateIndex: true
