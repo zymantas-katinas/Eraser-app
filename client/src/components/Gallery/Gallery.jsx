@@ -35,14 +35,9 @@ function Gallery(){
         )
      })
 
-     const cons = () => {
-        console.log('test')
-     }
-
     return (
         <div className ="gallery">
             <h1> GALLERY </h1>
-            <button onClick ={cons}> console</button>
             <div className ="gallery__artpieces">
                {loading ?  <div className="lds-ripple"><div></div><div></div></div> : all}
             </div>   

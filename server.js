@@ -11,11 +11,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const artpiecesRouter = require('./routes/api/artpieces');
-const usersRouter = require('./routes/api/users');
-
-app.use('/api/artpieces', artpiecesRouter);
-app.use('/api/users', usersRouter);
+app.use('/api/artpieces', require('./routes/api/artpieces'));
+app.use('/api/users', require('./routes/api/users'));
 
 // serve static assets if in production 
 if(process.env.NODE_ENV === 'production') {

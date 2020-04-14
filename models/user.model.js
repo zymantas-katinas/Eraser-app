@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -10,6 +9,14 @@ const userSchema = new Schema({
     trim: true,
     minlength: 3
   },
+  password: {
+    type: String,
+    required: true,
+  },
+  register_date: {
+    type: Date,
+    default: Date.now
+  }
 }, {
   timestamps: true,
 });

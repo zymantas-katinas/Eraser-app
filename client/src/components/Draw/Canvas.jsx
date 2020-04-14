@@ -35,7 +35,6 @@ export default function Canvas(props) {
       .then(res => console.log(res.data));
 
       // styling when post clicked
-      // canvasRect.current.classList.add('canvas__rectPostClick')
       canvasRect.current.style.transition = "0.5s"
       canvasRect.current.style.transform = `translate(${window.innerWidth + canvasRect.current.style.width}px)`
       canvasRect.current.style.opacity = "0"
